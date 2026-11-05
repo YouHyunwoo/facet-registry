@@ -1,0 +1,38 @@
+{
+  "id": "space-voyage",
+  "name": "우주 항해",
+  "version": "1.0.0",
+  "description": "행성 사이를 지나는 항해 배경과 HUD 위젯",
+  "colors": {
+    "Bg": "#020A0C",
+    "OverlayBackdrop": "#99020A0C",
+    "ModalBackdrop": "#C4020A0C",
+    "DangerSoft": "#FFB8D0",
+    "Panel": "#DE020E10",
+    "Edge": "#2F6E60",
+    "Ink": "#D8FFF2",
+    "Muted": "#93C4B3",
+    "ScheduleNow": "#FFB547",
+    "Mint": "#7CFFD4",
+    "Danger": "#FF8FB4",
+    "CalendarSunday": "#FF8FB4",
+    "CalendarSaturday": "#8FBCFF",
+    "Input": "#041416",
+    "Selected": "#134A40",
+    "Hover": "#0C332C",
+    "OnAccent": "#02140E"
+  },
+  "theme": {
+    "nebulaSpeed": 0.6,
+    "nebulaBrightness": 0.07,
+    "stars": 500,
+    "voyage": true,
+    "hudWidgets": true,
+    "options": [
+      { "id": "reticle", "name": "중앙 조준선", "description": "화면 가운데의 조준선을 표시합니다.", "default": true }
+    ],
+    "panelMarkLength": 12,
+    "panelCornerRadius": 0,
+    "tabCornerRadius": 0
+  }
+}

@@ -9,6 +9,16 @@
       "description": "초록빛 밤하늘과 별",
       "url": "https://github.com/YouHyunwoo/facet-registry/releases/download/skin-aurora-1.0.0/aurora-1.0.0.zip",
       "sha256": "c67d7005c57f1cae734b4304db10147837ec7ec95e5559143384ca035240e6e7"
+    },
+    {
+      "kind": "skin",
+      "id": "space-voyage",
+      "name": "우주 항해",
+      "version": "1.0.0",
+      "author": "YouHyunwoo",
+      "description": "행성 사이를 지나는 항해 배경과 HUD 위젯",
+      "url": "https://github.com/YouHyunwoo/facet-registry/releases/download/skin-space-voyage-1.0.0/space-voyage-1.0.0.zip",
+      "sha256": "90cf0db4efb3ea555a9169a00ba0e16208885ba9b418461d75436860209c6423"
     }
   ]
 }
