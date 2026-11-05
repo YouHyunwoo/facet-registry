@@ -1,3 +1,14 @@
 {
-  "packages": []
+  "packages": [
+    {
+      "kind": "skin",
+      "id": "aurora",
+      "name": "오로라",
+      "version": "1.0.0",
+      "author": "YouHyunwoo",
+      "description": "초록빛 밤하늘과 별",
+      "url": "https://github.com/YouHyunwoo/facet-registry/releases/download/skin-aurora-1.0.0/aurora-1.0.0.zip",
+      "sha256": "c67d7005c57f1cae734b4304db10147837ec7ec95e5559143384ca035240e6e7"
+    }
+  ]
 }
