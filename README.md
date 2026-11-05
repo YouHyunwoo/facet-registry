@@ -13,3 +13,8 @@
 GitHub 로그인 사용자가 제출 양식에 zip을 첨부하면 `tools/submission.py`가 검증합니다. 스킨은 바로 `index.json`에 올라가고, 플러그인은 pull request로 대기하며 병합이 승인입니다. 같은 ID는 처음 올린 작성자만 갱신할 수 있습니다.
 
 검사: `python registry/tools/test_submission.py`
+
+## 업로드 양식
+
+- [스킨 업로드 양식](docs/skin.md)
+- [플러그인 업로드 양식](docs/plugin.md)
