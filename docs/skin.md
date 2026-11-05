@@ -27,7 +27,7 @@ my-skin/
 
 | 항목 | 필수 | 규칙 |
 |---|---|---|
-| `id` | 예 | 영문 소문자·숫자로 시작하고 소문자·숫자·`.`·`_`·`-`만 씁니다. 64자까지이며 `.`으로 끝날 수 없습니다. `default`, `midnight`, `space`는 쓸 수 없습니다. |
+| `id` | 예 | 영문 소문자·숫자로 시작하고 소문자·숫자·`.`·`_`·`-`만 씁니다. 64자까지이며 `.`으로 끝날 수 없습니다. `default`, `midnight`, `space`, `voxel`은 쓸 수 없습니다. |
 | `name` | 예 | 목록에 보이는 이름, 64자까지 |
 | `version` | 예 | 영문·숫자로 시작하고 영문·숫자·`.`·`-`만 씁니다. 32자까지이며 `1.0.0` 형식을 권장합니다. |
 | `description` | 아니요 | 목록에 200자까지 표시 |
@@ -68,6 +68,8 @@ my-skin/
 | `tabCornerRadius` | 0–24 | 탭 막대 모서리 반경 |
 | `voyage` | true/false | 우주 항해 배경 |
 | `hudWidgets` | true/false | 위젯을 HUD 형태로 표시 |
+| `world` | `{ "scenes": [...] }` | 실시간 3D 배경. `market`, `lakeside`, `cave` 중에서 순서대로 고르며 중복은 안 됩니다. 앱의 WebView2 런타임을 씁니다. |
+| `hudStyle` | `tactical`, `soft` | HUD 위젯 모양. `soft`는 둥근 패널과 앱에 내장된 Jua·Gowun Dodum 글꼴을 씁니다. `hudWidgets`와 함께 씁니다. |
 | `options` | 목록 | 설정에 나타날 선택 항목. `id`(소문자·숫자·`-`, 32자까지), `name`이 필수이고 `description`, `default`를 쓸 수 있습니다. |
 
 이미지는 스킨 폴더 바로 아래의 PNG만 씁니다. 이름은 영문 소문자·숫자·`_`·`-`이고, 한 변은 8192픽셀까지입니다.

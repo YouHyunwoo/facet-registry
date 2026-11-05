@@ -21,7 +21,7 @@ VALID_ASSET = re.compile(r"[a-z0-9_-]{1,64}\.png")
 RESERVED = re.compile(r"(con|prn|aux|nul|com\d|lpt\d)(\..*)?", re.IGNORECASE)
 COLOR_TOKENS = {"Bg", "OverlayBackdrop", "ModalBackdrop", "DangerSoft", "Panel", "Edge", "Ink", "Muted", "ScheduleNow",
                 "Mint", "Danger", "CalendarSunday", "CalendarSaturday", "Input", "Selected", "Hover", "OnAccent"}
-BUILT_IN_SKINS = {"default", "midnight", "space"}
+BUILT_IN_SKINS = {"default", "midnight", "space", "voxel"}
 SKIN_EXTENSIONS = {".json", ".png", ".txt", ".md"}
 MAX_PLUGIN = 1 << 30
 MAX_SKIN = 64 << 20
