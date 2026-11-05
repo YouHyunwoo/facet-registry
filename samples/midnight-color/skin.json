@@ -1,0 +1,25 @@
+{
+  "id": "midnight-color",
+  "name": "미드나이트 컬러",
+  "version": "1.0.0",
+  "description": "보랏빛 남색 색상만 바꾸는 스킨",
+  "colors": {
+    "Bg": "#12162A",
+    "OverlayBackdrop": "#9912162A",
+    "ModalBackdrop": "#B812162A",
+    "DangerSoft": "#FFB8C4",
+    "Panel": "#1C2140",
+    "Edge": "#4A5280",
+    "Ink": "#E8E9F8",
+    "Muted": "#AEB2D6",
+    "ScheduleNow": "#FFE08A",
+    "Mint": "#B3A5FF",
+    "Danger": "#FF9DB0",
+    "CalendarSunday": "#FF9DB0",
+    "CalendarSaturday": "#8FC4FF",
+    "Input": "#161A33",
+    "Selected": "#3A3570",
+    "Hover": "#2A2F55",
+    "OnAccent": "#1B1640"
+  }
+}

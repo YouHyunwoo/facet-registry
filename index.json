@@ -2,13 +2,13 @@
   "packages": [
     {
       "kind": "skin",
-      "id": "aurora",
-      "name": "오로라",
+      "id": "midnight-color",
+      "name": "미드나이트 컬러",
       "version": "1.0.0",
       "author": "YouHyunwoo",
-      "description": "초록빛 밤하늘과 별",
-      "url": "https://github.com/YouHyunwoo/facet-registry/releases/download/skin-aurora-1.0.0/aurora-1.0.0.zip",
-      "sha256": "c67d7005c57f1cae734b4304db10147837ec7ec95e5559143384ca035240e6e7"
+      "description": "보랏빛 남색 색상만 바꾸는 스킨",
+      "url": "https://github.com/YouHyunwoo/facet-registry/releases/download/skin-midnight-color-1.0.0/midnight-color-1.0.0.zip",
+      "sha256": "6281781edcc5fb2b3091ee4ec8b56b8cc9a50c8f31cf9a3679a26cb8657937c2"
     },
     {
       "kind": "skin",

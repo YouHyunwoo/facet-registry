@@ -6,7 +6,7 @@ from pathlib import Path
 
 from submission import ATTACHMENT, Rejected, add_to_index, inspect
 
-SKIN = {"id": "aurora", "name": "Aurora", "version": "1.0.0", "colors": {"Bg": "#102030"}}
+SKIN = {"id": "sample", "name": "Aurora", "version": "1.0.0", "colors": {"Bg": "#102030"}}
 PLUGIN = {"id": "my.plugin", "name": "Mine", "version": "1.0.0", "assembly": "My.dll"}
 
 
@@ -52,8 +52,8 @@ class Inspect(unittest.TestCase):
 class Index(unittest.TestCase):
     def test_ownership_and_versions(self):
         index = {"packages": []}
-        self.assertEqual(add_to_index(index, "skin", SKIN, "ann", "o/r", "a" * 64), "skin-aurora-1.0.0")
-        self.assertEqual(index["packages"][0]["url"], "https://github.com/o/r/releases/download/skin-aurora-1.0.0/aurora-1.0.0.zip")
+        self.assertEqual(add_to_index(index, "skin", SKIN, "ann", "o/r", "a" * 64), "skin-sample-1.0.0")
+        self.assertEqual(index["packages"][0]["url"], "https://github.com/o/r/releases/download/skin-sample-1.0.0/sample-1.0.0.zip")
         with self.assertRaises(Rejected):
             add_to_index(index, "skin", {**SKIN, "version": "2.0.0"}, "eve", "o/r", "b" * 64)
         with self.assertRaises(Rejected):

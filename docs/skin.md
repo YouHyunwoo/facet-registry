@@ -16,10 +16,10 @@ my-skin/
 
 ```json
 {
-  "id": "aurora",
-  "name": "오로라",
+  "id": "my-skin",
+  "name": "내 스킨",
   "version": "1.0.0",
-  "description": "초록빛 밤하늘과 별",
+  "description": "내 스킨 설명",
   "colors": { "Bg": "#06141A", "Panel": "#DE0B1F26", "Ink": "#E8FFF6", "Mint": "#6CF2C2" },
   "theme": { "background": "sky.png", "backgroundOpacity": 0.6, "stars": 160 }
 }
@@ -34,7 +34,7 @@ my-skin/
 | `colors` | 아니요 | 아래 색 토큰. 쓰지 않은 색은 기본 스킨을 따릅니다. |
 | `theme` | 아니요 | 아래 시각 효과 |
 
-전체 예시는 [samples/aurora](../samples/aurora/skin.json)에 있습니다.
+색상만 바꾸는 예시는 [samples/midnight-color](../samples/midnight-color/skin.json), 시각 효과까지 쓰는 예시는 [samples/space-voyage](../samples/space-voyage/skin.json)에 있습니다.
 
 ## 색 토큰
 
