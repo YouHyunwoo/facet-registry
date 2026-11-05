@@ -1,0 +1,57 @@
+# A skin goes live after validation; a plugin waits as a pull request, and merging it is the admin's approval (ADR 0088).
+# Issue text is untrusted: it reaches the script only through the environment, and only validated values come back.
+name: Package submission
+on:
+  issues:
+    types: [opened]
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+concurrency:
+  group: package-submission
+  cancel-in-progress: false
+jobs:
+  submit:
+    if: contains(github.event.issue.labels.*.name, 'submission')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ISSUE: ${{ github.event.issue.number }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: check
+        run: python tools/submission.py
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          AUTHOR: ${{ github.event.issue.user.login }}
+          REPOSITORY: ${{ github.repository }}
+      - name: Publish the file
+        run: gh release create "$TAG" "$ASSET" --title "$TAG" --notes "Submission #$ISSUE, SHA-256 $SHA" --prerelease
+        env:
+          TAG: ${{ steps.check.outputs.tag }}
+          ASSET: ${{ steps.check.outputs.asset }}
+          SHA: ${{ steps.check.outputs.sha256 }}
+      - name: Update the list
+        env:
+          KIND: ${{ steps.check.outputs.kind }}
+          TAG: ${{ steps.check.outputs.tag }}
+          SHA: ${{ steps.check.outputs.sha256 }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ "$KIND" = skin ]; then
+            git add index.json
+            git commit -m "Publish $TAG"
+            git push
+            gh issue close "$ISSUE" --comment "검증을 통과해 공개했습니다: $TAG"
+          else
+            git switch -c "submission/$TAG"
+            git add index.json
+            git commit -m "Publish $TAG"
+            git push -u origin "submission/$TAG"
+            gh pr create --title "Publish $TAG" --body "Closes #$ISSUE. 플러그인은 앱과 같은 권한으로 실행됩니다. 릴리스 $TAG 의 파일(SHA-256 $SHA)을 검토한 뒤 병합하세요."
+            gh issue comment "$ISSUE" --body "자동 검증을 통과했고 관리자 검토를 기다립니다."
+          fi
+      - if: failure()
+        run: gh issue comment "$ISSUE" --body "제출을 처리하지 못했습니다. 이유는 실행 기록에서 볼 수 있습니다 https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"

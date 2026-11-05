@@ -1,0 +1,12 @@
+name: 스킨·플러그인 올리기
+description: Facet 설정의 "올리기"가 만든 zip을 제출합니다.
+title: "패키지 제출"
+labels: [submission]
+body:
+  - type: textarea
+    id: package
+    attributes:
+      label: 패키지 파일
+      description: zip 파일 하나를 여기에 끌어다 놓으세요. 스킨은 자동 검사 후, 플러그인은 관리자 승인 후 공개됩니다.
+    validations:
+      required: true
