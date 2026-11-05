@@ -4,7 +4,7 @@ import unittest
 import zipfile
 from pathlib import Path
 
-from submission import ATTACHMENT, Rejected, add_to_index, inspect
+from submission import needs_review, ATTACHMENT, Rejected, add_to_index, inspect
 
 SKIN = {"id": "sample", "name": "Aurora", "version": "1.0.0", "colors": {"Bg": "#102030"}}
 PLUGIN = {"id": "my.plugin", "name": "Mine", "version": "1.0.0", "assembly": "My.dll"}
@@ -39,6 +39,16 @@ class Inspect(unittest.TestCase):
         self.refused({"skin.json": {**SKIN, "id": "space"}})
         self.refused({"skin.json": {**SKIN, "version": "a/b"}})
         self.refused({"plugin.json": PLUGIN})
+
+    def test_world_skin_waits_for_review(self):
+        world = {**SKIN, "theme": {"world": {"page": "w.html", "scenes": ["a"]}, "fonts": {"body": {"file": "f.ttf", "family": "F"}}}}
+        kind, manifest = inspect(self.package({"skin.json": world, "w.html": "x", "f.ttf": "x"}))
+        self.assertEqual(kind, "skin")
+        self.assertTrue(needs_review(manifest))
+        self.assertFalse(needs_review(SKIN))
+        self.refused({"skin.json": world, "f.ttf": "x"})
+        self.refused({"skin.json": world, "w.html": "x"})
+        self.refused({"skin.json": {**SKIN, "theme": {"world": {"page": "../w.html"}}}, "w.html": "x"})
 
     def test_skin_is_data(self):
         self.refused({"skin.json": SKIN, "run.dll": "x"})

@@ -22,7 +22,9 @@ RESERVED = re.compile(r"(con|prn|aux|nul|com\d|lpt\d)(\..*)?", re.IGNORECASE)
 COLOR_TOKENS = {"Bg", "OverlayBackdrop", "ModalBackdrop", "DangerSoft", "Panel", "Edge", "Ink", "Muted", "ScheduleNow",
                 "Mint", "Danger", "CalendarSunday", "CalendarSaturday", "Input", "Selected", "Hover", "OnAccent"}
 BUILT_IN_SKINS = {"default", "midnight", "space", "voxel"}
-SKIN_EXTENSIONS = {".json", ".png", ".txt", ".md"}
+SKIN_EXTENSIONS = {".json", ".png", ".txt", ".md", ".html", ".ttf", ".otf"}
+VALID_PAGE = re.compile(r"[a-z0-9_-]{1,64}\.html")
+VALID_FONT = re.compile(r"[A-Za-z0-9_-]{1,64}\.(ttf|otf)")
 MAX_PLUGIN = 1 << 30
 MAX_SKIN = 64 << 20
 MAX_ENTRIES = 5000
@@ -85,7 +87,22 @@ def inspect(path):
         asset = lowered.get(slot)
         if asset is not None:
             require(isinstance(asset, str) and VALID_ASSET.fullmatch(asset) and asset in names, f"invalid {slot} image")
+    world = lowered.get("world")
+    if world is not None:
+        page = world.get("page") if isinstance(world, dict) else None
+        require(isinstance(page, str) and VALID_PAGE.fullmatch(page) and page in names, "invalid world page")
+    fonts = lowered.get("fonts")
+    if fonts is not None:
+        require(isinstance(fonts, dict), "fonts must be an object")
+        for font in fonts.values():
+            require(isinstance(font, dict) and isinstance(font.get("file"), str) and VALID_FONT.fullmatch(font["file"]) and font["file"] in names, "invalid font file")
     return "skin", manifest
+
+
+def needs_review(manifest):
+    """A world page is code: such a skin waits for an admin like a plugin (ADR 0091)."""
+    theme = manifest.get("theme", {})
+    return any(key.lower() == "world" for key in theme)
 
 
 def add_to_index(index, kind, manifest, author, repository, sha256):
@@ -125,8 +142,9 @@ def main():
     index_path.write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     asset = work / f"{manifest['id']}-{manifest['version']}.zip"
     download.replace(asset)
+    review = kind == "plugin" or needs_review(manifest)
     with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
-        output.write(f"kind={kind}\ntag={tag}\nasset={asset}\nsha256={sha256}\n")
+        output.write(f"kind={kind}\nreview={str(review).lower()}\ntag={tag}\nasset={asset}\nsha256={sha256}\n")
 
 
 if __name__ == "__main__":

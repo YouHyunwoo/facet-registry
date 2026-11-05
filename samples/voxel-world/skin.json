@@ -1,7 +1,7 @@
 {
   "id": "voxel-world",
   "name": "복셀 월드",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "시장 거리, 물가의 집, 광맥 동굴을 오가는 실시간 3D 복셀 배경과 전용 위젯. 시간과 날씨를 따라 바뀝니다.",
   "colors": {
     "Bg": "#241A20",
@@ -23,7 +23,11 @@
     "OnAccent": "#2B1A10"
   },
   "theme": {
-    "world": { "scenes": ["market", "lakeside", "cave"] },
+    "fonts": {
+      "body": { "file": "GowunDodum-Regular.ttf", "family": "Gowun Dodum" },
+      "heading": { "file": "Jua-Regular.ttf", "family": "Jua" }
+    },
+    "world": { "page": "world.html", "scenes": ["market", "lakeside", "cave"] },
     "hudWidgets": true,
     "hudStyle": "soft",
     "panelMarkLength": 0,

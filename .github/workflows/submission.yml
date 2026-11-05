@@ -34,13 +34,13 @@ jobs:
           SHA: ${{ steps.check.outputs.sha256 }}
       - name: Update the list
         env:
-          KIND: ${{ steps.check.outputs.kind }}
+          REVIEW: ${{ steps.check.outputs.review }}
           TAG: ${{ steps.check.outputs.tag }}
           SHA: ${{ steps.check.outputs.sha256 }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ "$KIND" = skin ]; then
+          if [ "$REVIEW" != true ]; then
             git add index.json
             git commit -m "Publish $TAG"
             git push
@@ -50,7 +50,7 @@ jobs:
             git add index.json
             git commit -m "Publish $TAG"
             git push -u origin "submission/$TAG"
-            gh pr create --title "Publish $TAG" --body "Closes #$ISSUE. 플러그인은 앱과 같은 권한으로 실행됩니다. 릴리스 $TAG 의 파일(SHA-256 $SHA)을 검토한 뒤 병합하세요."
+            gh pr create --title "Publish $TAG" --body "Closes #$ISSUE. 플러그인은 앱과 같은 권한으로 실행되고, 3D 월드 스킨은 잠긴 WebView2 안에서 코드를 실행합니다. 릴리스 $TAG 의 파일(SHA-256 $SHA)을 검토한 뒤 병합하세요."
             gh issue comment "$ISSUE" --body "자동 검증을 통과했고 관리자 검토를 기다립니다."
           fi
       - if: failure()

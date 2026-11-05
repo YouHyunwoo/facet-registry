@@ -24,11 +24,11 @@
       "kind": "skin",
       "id": "voxel-world",
       "name": "복셀 월드",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": "YouHyunwoo",
       "description": "시장 거리, 물가의 집, 광맥 동굴을 오가는 실시간 3D 복셀 배경과 전용 위젯. 시간과 날씨를 따라 바뀝니다.",
-      "url": "https://github.com/YouHyunwoo/facet-registry/releases/download/skin-voxel-world-1.0.0/voxel-world-1.0.0.zip",
-      "sha256": "8dce5f389e10a2bfee0595bed7aa974c9d59b6225ec4171d54ae56ac479855c2"
+      "url": "https://github.com/YouHyunwoo/facet-registry/releases/download/skin-voxel-world-1.1.0/voxel-world-1.1.0.zip",
+      "sha256": "aa4fb33647d02ec4021bf1018b35e3e2e789b37d7218bfff967fbbfa7840f7e8"
     }
   ]
 }
